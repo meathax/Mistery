@@ -63,7 +63,8 @@ Windows 10/11 x64. 89 MB, fully self-contained: no installer, no Python, no Quar
 ```
 
 **1. Convert.** Pick the RBF and an output folder, leave the payload ticks on, press **CONVERT**.
-Command line: `mistery-convert.exe core.rbf out\`
+Got a pile of cores? Multi-select them (or type a folder) and Mistery rips them all, one subfolder each.
+Command line: `mistery-convert.exe core.rbf out\` or `mistery-convert.exe cores\ out\`
 
 **2. Edit.** `core.v` has one instance per used block on the chip, named by position
 (`LAB_038_012`, `M10K_049_001`, ...). Its parameters are the configuration:

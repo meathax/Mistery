@@ -11,7 +11,8 @@ Writes into the output folder, for an RBF named NAME.rbf:
   NAME.rebuilt.rbf            the RBF rebuilt from NAME.v + sidecar (verification)
   NAME.summary.txt            what was produced and the verification result
 
-Usage: python convert.py RBF OUTDIR [--no-source] [--no-rtl] [--no-sim] [--no-verify] [--ir]
+Usage: python convert.py RBF [RBF ... | FOLDER] OUTDIR [--no-source] [--no-rtl] [--no-sim] [--no-verify] [--ir]
+       (several RBFs, or a folder of them: each goes to OUTDIR/<name>/)
        python convert.py --rebuild NAME.v OUT.rbf      (rebuild an RBF from NAME.v + NAME.sidecar.json)
 Only for open-source cores and your own designs.
 """
@@ -136,18 +137,63 @@ def rebuild(source_v, out_rbf, log=print):
     return {"rbf": str(out_rbf), "seconds": secs, "sha256": sha256(out_rbf)}
 
 
+def collect(inputs):
+    """RBF files from a list of files and/or folders (a folder contributes every *.rbf in it)."""
+    out = []
+    for i in inputs:
+        p = Path(i)
+        if p.is_dir():
+            out += sorted(f for f in p.iterdir() if f.suffix.lower() == ".rbf" and f.is_file())
+        elif p.suffix.lower() == ".rbf" or p.is_file():
+            out.append(p)
+    seen, uniq = set(), []
+    for p in out:
+        k = str(p.resolve()).lower()
+        if k not in seen:
+            seen.add(k)
+            uniq.append(p)
+    return uniq
+
+
+def convert_many(inputs, outdir, log=print, **opts):
+    """Convert several RBFs. One RBF writes straight into outdir; several get outdir/<name>/ each.
+    A failing RBF is logged and skipped. Returns [(rbf, result dict or None, error or None)]."""
+    rbfs = collect(inputs)
+    if not rbfs:
+        raise FileNotFoundError("no .rbf files in the selection")
+    outdir = Path(outdir)
+    results = []
+    for n, rbf in enumerate(rbfs, 1):
+        dest = outdir if len(rbfs) == 1 else outdir / rbf.stem
+        if len(rbfs) > 1:
+            log(f"[{n}/{len(rbfs)}] {rbf.name} -> {dest}")
+        try:
+            results.append((rbf, convert(rbf, dest, log=log, **opts), None))
+        except Exception as e:  # keep going with the rest of the batch
+            log(f"  ERROR: {e}")
+            results.append((rbf, None, str(e)))
+            if len(rbfs) > 1 and dest.is_dir() and not any(dest.iterdir()):
+                dest.rmdir()                    # no empty folder for a file that failed
+    if len(rbfs) > 1:
+        ok = sum(1 for _, r, e in results if r and r["verified"] in (None, True))
+        log(f"Batch done: {ok}/{len(rbfs)} converted"
+            + ("" if ok == len(rbfs) else f", {len(rbfs) - ok} failed or differ: "
+               + ", ".join(r.name for r, res, e in results if not res or res["verified"] is False)))
+    return results
+
+
 def main(argv):
     flags = {a for a in argv if a.startswith("--")}
     args = [a for a in argv if not a.startswith("--")]
     if "--rebuild" in flags and len(args) == 2:
         rebuild(args[0], args[1])
         return 0
-    if len(args) != 2:
+    if len(args) < 2:
         print(__doc__)
         return 2
-    res = convert(args[0], args[1], source="--no-source" not in flags, sim="--no-sim" not in flags,
-                  verify="--no-verify" not in flags, ir_json="--ir" in flags, rtl="--no-rtl" not in flags)
-    return 0 if res["verified"] in (None, True) else 1
+    results = convert_many(args[:-1], args[-1], source="--no-source" not in flags, sim="--no-sim" not in flags,
+                           verify="--no-verify" not in flags, ir_json="--ir" in flags, rtl="--no-rtl" not in flags)
+    return 0 if all(res and res["verified"] in (None, True) for _, res, _ in results) else 1
 
 
 if __name__ == "__main__":

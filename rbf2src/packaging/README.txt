@@ -8,9 +8,10 @@ Setup
   no runtime packages. Keep this folder together: the exes need _internal\ and mistral-cv\ next to them.
 
 Using it
-  GUI: pick the RBF, pick an output folder, tick what to produce, press Convert.
+  GUI: pick one or more RBFs (Ctrl/Shift-click, or type a folder), pick an output folder, tick what to
+       produce, press Convert. Several RBFs each get their own subfolder.
   Rebuild: press REBUILD RBF, pick your edited NAME.v (NAME.sidecar.json next to it), save the new RBF.
-  Command line: mistery-convert.exe NAME.rbf OUTDIR [--no-rtl] [--no-source] [--no-sim] [--no-verify] [--ir]
+  Command line: mistery-convert.exe NAME.rbf [MORE.rbf ... | FOLDER] OUTDIR [--no-rtl] [--no-source] [--no-sim] [--no-verify] [--ir]
                 mistery-convert.exe --rebuild NAME.v NEW.rbf
 
 Output for NAME.rbf

@@ -3,7 +3,7 @@
 
 Wraps convert.py (no extra packages: tkinter ships with Python). Run: python rbf2src/gui.py
 """
-import os, queue, subprocess, sys, threading, traceback
+import os, queue, subprocess, sys, threading, time, traceback
 import tkinter as tk
 from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
@@ -156,11 +156,17 @@ class App(tk.Tk):
                   ).grid(row=9, column=0, columnspan=4, sticky="e", pady=(6, 0))
 
     def _pick_rbf(self):
-        p = filedialog.askopenfilename(title="Select RBF", filetypes=[("FPGA bitstream", "*.rbf"), ("All files", "*.*")])
-        if p:
-            self.rbf.set(p)
+        ps = filedialog.askopenfilenames(title="Select RBF(s) - Ctrl/Shift-click for several",
+                                         filetypes=[("FPGA bitstream", "*.rbf"), ("All files", "*.*")])
+        if ps:
+            self.rbf.set("; ".join(ps))
             if not self.out.get():
-                self.out.set(str(Path(p).with_name(Path(p).stem + "_source")))
+                p = Path(ps[0])
+                self.out.set(str(p.with_name(p.stem + "_source") if len(ps) == 1 else p.parent / "mistery_source"))
+
+    def _inputs(self):
+        """Entry text -> RBF paths: several separated by ';', or a folder (all its .rbf files)."""
+        return convert.collect([s.strip().strip('"') for s in self.rbf.get().split(";") if s.strip()])
 
     def _pick_out(self):
         p = filedialog.askdirectory(title="Select output folder", mustexist=False)
@@ -181,9 +187,9 @@ class App(tk.Tk):
         self.log.configure(state="disabled")
 
     def _run(self):
-        rbf, out = self.rbf.get().strip(), self.out.get().strip()
-        if not rbf or not Path(rbf).is_file():
-            messagebox.showerror(TITLE, "Select an existing RBF file.")
+        rbfs, out = self._inputs(), self.out.get().strip()
+        if not rbfs:
+            messagebox.showerror(TITLE, "Select one or more RBF files (or a folder containing them).")
             return
         if not out:
             messagebox.showerror(TITLE, "Select an output folder.")
@@ -195,9 +201,9 @@ class App(tk.Tk):
         self.log.configure(state="normal"); self.log.delete("1.0", "end"); self.log.configure(state="disabled")
         self.run_btn.configure(state="disabled")
         self.open_btn.configure(state="disabled")
-        self.status.configure(text="[>] working ...", foreground=CYAN)
+        self.status.configure(text=f"[>] working on {len(rbfs)} rbf{'s' if len(rbfs) > 1 else ''} ...", foreground=CYAN)
         self.prog.start(12)
-        self.worker = threading.Thread(target=self._work, args=(rbf, out, o), daemon=True)
+        self.worker = threading.Thread(target=self._work, args=(rbfs, out, o), daemon=True)
         self.worker.start()
 
     def _rebuild(self):
@@ -227,11 +233,16 @@ class App(tk.Tk):
                 self.msgs.put(("error", str(e)))
         threading.Thread(target=work, daemon=True).start()
 
-    def _work(self, rbf, out, o):
+    def _work(self, rbfs, out, o):
         try:
-            res = convert.convert(rbf, out, source=o["source"], sim=o["sim"], verify=o["verify"],
-                                  ir_json=o["ir"], rtl=o["rtl"], log=lambda s: self.msgs.put(("log", s)))
-            self.msgs.put(("done", res))
+            t0 = time.time()
+            results = convert.convert_many(rbfs, out, source=o["source"], sim=o["sim"], verify=o["verify"],
+                                           ir_json=o["ir"], rtl=o["rtl"], log=lambda s: self.msgs.put(("log", s)))
+            if len(results) == 1:
+                rbf, res, err = results[0]
+                self.msgs.put(("done", res) if res else ("error", err))
+            else:
+                self.msgs.put(("batch", (results, round(time.time() - t0, 1))))
         except Exception as e:  # shown to the user, details in the log
             self.msgs.put(("log", traceback.format_exc().rstrip()))
             self.msgs.put(("error", str(e)))
@@ -250,6 +261,12 @@ class App(tk.Tk):
                         self.status.configure(text=f"[+] rbf rebuilt in {v['seconds']} s :: {Path(v['rbf']).name}",
                                               foreground=GREEN)
                         self.out.set(str(Path(v["rbf"]).parent))
+                        self.open_btn.configure(state="normal")
+                    elif kind == "batch":
+                        results, secs = v
+                        ok = sum(1 for _, r, _ in results if r and r["verified"] in (None, True))
+                        self.status.configure(text=f"[+] batch: {ok}/{len(results)} converted in {secs} s",
+                                              foreground=GREEN if ok == len(results) else MAGENTA)
                         self.open_btn.configure(state="normal")
                     elif kind == "done":
                         ok = {None: "", True: " :: rebuild verified byte-identical",
