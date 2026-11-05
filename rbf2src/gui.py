@@ -113,9 +113,12 @@ class App(tk.Tk):
         ttk.Label(f, text="─" * 78, style="Dim.TLabel").grid(row=2, column=0, columnspan=2, sticky="w", pady=(2, 8))
 
         pad = {"padx": (0, 8), "pady": 4}
-        ttk.Label(f, text="[ INPUT  ]", foreground=CYAN).grid(row=3, column=0, sticky="w", **pad)
+        ttk.Label(f, text="[ RBF(s) ]", foreground=CYAN).grid(row=3, column=0, sticky="w", **pad)
         ttk.Entry(f, textvariable=self.rbf, font=MONO).grid(row=3, column=1, sticky="ew", pady=4)
-        ttk.Button(f, text="BROWSE", command=self._pick_rbf).grid(row=3, column=2, padx=(8, 0), pady=4)
+        pick = ttk.Frame(f)
+        pick.grid(row=3, column=2, padx=(8, 0), pady=4, sticky="ew")
+        ttk.Button(pick, text="FILES", command=self._pick_rbf).pack(side="left", fill="x", expand=True)
+        ttk.Button(pick, text="FOLDER", command=self._pick_rbf_dir).pack(side="left", fill="x", expand=True, padx=(6, 0))
         ttk.Label(f, text="[ OUTPUT ]", foreground=CYAN).grid(row=4, column=0, sticky="w", **pad)
         ttk.Entry(f, textvariable=self.out, font=MONO).grid(row=4, column=1, sticky="ew", pady=4)
         ttk.Button(f, text="BROWSE", command=self._pick_out).grid(row=4, column=2, padx=(8, 0), pady=4)
@@ -140,7 +143,8 @@ class App(tk.Tk):
         self.rb_btn.pack(side="left")
         self.prog = ttk.Progressbar(bar, mode="indeterminate", length=200, style="Scene.Horizontal.TProgressbar")
         self.prog.pack(side="right")
-        self.status = ttk.Label(f, text="[*] ready. load an rbf.", style="Status.TLabel")
+        self.status = ttk.Label(f, text="[*] ready. FILES = one or many rbfs (ctrl/shift-click), FOLDER = every rbf in a folder.",
+                                style="Status.TLabel")
         self.status.grid(row=7, column=0, columnspan=4, sticky="w", pady=(10, 4))
 
         self.log = tk.Text(f, height=12, wrap="word", state="disabled", font=("Consolas", 9), bg="#000000", fg=GREEN,
@@ -160,9 +164,21 @@ class App(tk.Tk):
                                          filetypes=[("FPGA bitstream", "*.rbf"), ("All files", "*.*")])
         if ps:
             self.rbf.set("; ".join(ps))
+            self.status.configure(text=f"[*] {len(ps)} rbf{'s' if len(ps) != 1 else ''} loaded. press convert.",
+                                  foreground=CYAN)
             if not self.out.get():
                 p = Path(ps[0])
                 self.out.set(str(p.with_name(p.stem + "_source") if len(ps) == 1 else p.parent / "mistery_source"))
+
+    def _pick_rbf_dir(self):
+        d = filedialog.askdirectory(title="Select a folder of RBFs (every .rbf in it is converted)")
+        if d:
+            n = len(convert.collect([d]))
+            self.rbf.set(d)
+            if not self.out.get():
+                self.out.set(str(Path(d) / "mistery_source"))
+            self.status.configure(text=f"[*] {n} rbf{'s' if n != 1 else ''} in that folder. press convert.",
+                                  foreground=CYAN if n else MAGENTA)
 
     def _inputs(self):
         """Entry text -> RBF paths: several separated by ';', or a folder (all its .rbf files)."""
