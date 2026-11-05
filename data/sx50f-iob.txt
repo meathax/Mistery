@@ -1,0 +1,438 @@
+000 000.011.0 hssi_output 10
+001 000.011.1 hssi_output 11
+002 000.014.0 hssi_input 13
+003 000.014.1 hssi_input 12
+004 000.015.0 hssi_output 8
+005 000.015.1 hssi_output 9
+006 000.018.0 hssi_input 11
+007 000.018.1 hssi_input 10
+008 000.019.0 hssi_output 6
+009 000.019.1 hssi_output 7
+010 000.019.2 hssi_input 15
+011 000.019.3 hssi_input 14
+012 000.022.0 hssi_input 9
+013 000.022.1 hssi_input 8
+014 000.023.0 hssi_output 4
+015 000.023.1 hssi_output 5
+016 000.026.0 hssi_input 7
+017 000.026.1 hssi_input 6
+018 000.027.0 hssi_output 2
+019 000.027.1 hssi_output 3
+020 000.030.0 hssi_input 5
+021 000.030.1 hssi_input 4
+022 000.031.0 hssi_output 0
+023 000.031.1 hssi_output 1
+024 000.031.2 hssi_input 0
+025 000.031.3 hssi_input 1
+026 000.034.0 hssi_input 3
+027 000.034.1 hssi_input 2
+028 002.000.0 gpio 0 serdes
+029 002.000.1 gpio 1 serdes
+030 002.000.2 gpio 2 serdes
+031 002.000.3 gpio 3 serdes
+032 002.061.0 gpio 0 serdes
+033 002.061.1 gpio 1 serdes
+034 002.061.2 gpio 2 serdes
+035 002.061.3 gpio 3 serdes
+036 004.000.0 gpio 0 serdes
+037 004.000.1 gpio 1 serdes
+038 004.000.2 gpio 2 serdes
+039 004.000.3 gpio 3 serdes
+040 004.061.0 gpio 0 serdes
+041 004.061.1 gpio 1 serdes
+042 004.061.2 gpio 2 serdes
+043 004.061.3 gpio 3 serdes
+044 006.000.0 gpio 0 serdes
+045 006.000.1 gpio 1 serdes
+046 006.000.2 gpio 2 serdes
+047 006.000.3 gpio 3 serdes
+048 006.061.0 gpio 0 serdes
+049 006.061.1 gpio 1 serdes
+050 006.061.2 gpio 2 serdes
+051 006.061.3 gpio 3 serdes
+052 007.000.0 gpio 0 serdes
+053 007.000.1 gpio 1 serdes
+054 007.000.2 gpio 2 serdes
+055 007.000.3 gpio 3 serdes
+056 007.061.0 gpio 0 serdes
+057 007.061.1 gpio 1 serdes
+058 007.061.2 gpio 2 serdes
+059 007.061.3 gpio 3 serdes
+060 010.000.0 gpio 0 serdes
+061 010.000.1 gpio 1 serdes
+062 010.000.2 gpio 2 serdes
+063 010.000.3 gpio 3 serdes
+064 010.061.0 gpio 0 serdes
+065 010.061.1 gpio 1 serdes
+066 010.061.2 gpio 2 serdes
+067 010.061.3 gpio 3 serdes
+068 011.000.0 jtag 0
+069 011.000.1 dpp 0
+070 011.000.2 jtag 1
+071 011.000.3 dpp 1
+072 011.061.0 dpp 6
+073 011.061.1 dpp 7
+074 011.061.2 dpp 8
+075 011.061.3 dpp 9
+076 012.000.0 gpio 0 serdes
+077 012.000.1 gpio 1 serdes
+078 012.000.2 gpio 2 serdes
+079 012.000.3 gpio 3 serdes
+080 012.061.0 gpio 0 serdes
+081 012.061.1 gpio 1 serdes
+082 012.061.2 gpio 2 serdes
+083 012.061.3 gpio 3 serdes
+084 013.000.0 jtag 2
+085 013.000.1 dpp 2
+086 013.000.2 jtag 3
+087 013.000.3 dpp 3
+088 013.061.0 dpp 10
+089 013.061.1 dpp 11
+090 013.061.2 dpp 12
+091 013.061.3 dpp 13
+092 014.000.0 gpio 0 serdes
+093 014.000.1 gpio 1 serdes
+094 014.000.2 gpio 2 serdes
+095 014.000.3 gpio 3 serdes
+096 014.061.0 gpio 0 serdes
+097 014.061.1 gpio 1 serdes
+098 014.061.2 gpio 2 serdes
+099 014.061.3 gpio 3 serdes
+100 015.000.0 gpio 0 serdes
+101 015.000.1 gpio 1 serdes
+102 015.000.2 gpio 2 serdes
+103 015.000.3 gpio 3 serdes
+104 015.061.0 gpio 0 serdes
+105 015.061.1 gpio 1 serdes
+106 015.061.2 gpio 2 serdes
+107 015.061.3 gpio 3 serdes
+108 017.000.0 gpio 0 serdes
+109 017.000.1 gpio 1 serdes
+110 017.000.2 gpio 2 serdes
+111 017.000.3 gpio 3 serdes
+112 017.061.0 gpio 0 serdes
+113 017.061.1 gpio 1 serdes
+114 017.061.2 gpio 2 serdes
+115 017.061.3 gpio 3 serdes
+116 018.000.0 gpio 0 serdes
+117 018.000.1 gpio 1 serdes
+118 018.000.2 gpio 2 serdes
+119 018.000.3 gpio 3 serdes
+120 018.061.0 gpio 0 serdes
+121 018.061.1 gpio 1 serdes
+122 018.061.2 gpio 2 serdes
+123 018.061.3 gpio 3 serdes
+124 019.000.0 gpio 0 serdes
+125 019.000.1 gpio 1 serdes
+126 019.000.2 gpio 2 serdes
+127 019.000.3 gpio 3 serdes
+128 019.061.0 gpio 0 serdes
+129 019.061.1 gpio 1 serdes
+130 019.061.2 gpio 2 serdes
+131 019.061.3 gpio 3 serdes
+132 020.061.0 dpp 14
+133 020.061.1 dpp 15
+134 020.061.2 dpp 16
+135 020.061.3 dpp 17
+136 021.000.0 gpio 0 serdes
+137 021.000.1 gpio 1 serdes
+138 021.000.2 gpio 2 serdes
+139 021.000.3 gpio 3 serdes
+140 021.061.0 gpio 0 serdes
+141 021.061.1 gpio 1 serdes
+142 021.061.2 gpio 2 serdes
+143 021.061.3 gpio 3 serdes
+144 022.000.0 dpp 4
+145 022.000.1 dpp 5
+146 022.061.0 dpp 18
+147 022.061.1 dpp 19
+148 022.061.2 dpp 20
+149 022.061.3 dpp 21
+150 023.061.0 dpp 22
+151 023.061.1 dpp 23
+152 023.061.2 dpp 24
+153 023.061.3 dpp 25
+154 024.061.0 dpp 26
+155 024.061.1 dpp 27
+156 024.061.2 dpp 28
+157 024.061.3 dpp 29
+158 029.061.0 gpio 0
+159 029.061.1 gpio 1
+160 029.061.2 gpio 2
+161 029.061.3 gpio 3
+162 032.000.0 gpio 0 serdes
+163 032.000.1 gpio 1 serdes
+164 032.000.2 gpio 2 serdes
+165 032.000.3 gpio 3 serdes
+166 032.061.0 gpio 0
+167 032.061.1 gpio 1
+168 032.061.2 gpio 2
+169 032.061.3 gpio 3
+170 033.061.0 gpio 0
+171 033.061.1 gpio 1
+172 033.061.2 gpio 2
+173 033.061.3 gpio 3
+174 034.000.0 gpio 0 serdes
+175 034.000.1 gpio 1 serdes
+176 034.000.2 gpio 2 serdes
+177 034.000.3 gpio 3 serdes
+178 034.061.0 gpio 0
+179 034.061.1 gpio 1
+180 034.061.2 gpio 2
+181 034.061.3 gpio 3
+182 036.000.0 gpio 0 serdes
+183 036.000.1 gpio 1 serdes
+184 036.000.2 gpio 2 serdes
+185 036.000.3 gpio 3 serdes
+186 037.061.0 gpio 0
+187 037.061.1 gpio 1
+188 037.061.2 gpio 2
+189 037.061.3 gpio 3
+190 038.000.0 gpio 0 serdes
+191 038.000.1 gpio 1 serdes
+192 038.000.2 gpio 2 serdes
+193 038.000.3 gpio 3 serdes
+194 039.061.0 gpio 0
+195 039.061.1 gpio 1
+196 039.061.2 gpio 2
+197 039.061.3 gpio 3
+198 040.000.0 gpio 0 serdes
+199 040.000.1 gpio 1 serdes
+200 040.000.2 gpio 2 serdes
+201 040.000.3 gpio 3 serdes
+202 040.061.0 gpio 0
+203 040.061.1 gpio 1
+204 040.061.2 gpio 2
+205 040.061.3 gpio 3
+206 042.000.0 gpio 0 serdes
+207 042.000.1 gpio 1 serdes
+208 042.000.2 gpio 2 serdes
+209 042.000.3 gpio 3 serdes
+210 043.061.0 gpio 0
+211 043.061.1 gpio 1
+212 043.061.2 gpio 2
+213 043.061.3 gpio 3
+214 044.000.0 gpio 0 serdes
+215 044.000.1 gpio 1 serdes
+216 044.000.2 gpio 2 serdes
+217 044.000.3 gpio 3 serdes
+218 044.061.0 gpio 0
+219 044.061.1 gpio 1
+220 044.061.2 gpio 2
+221 044.061.3 gpio 3
+222 046.000.0 gpio 0 serdes
+223 046.000.1 gpio 1 serdes
+224 046.000.2 gpio 2 serdes
+225 046.000.3 gpio 3 serdes
+226 046.061.0 gpio 0
+227 046.061.1 gpio 1
+228 046.061.2 gpio 2
+229 046.061.3 gpio 3
+230 047.061.0 gpio 0
+231 047.061.1 gpio 1
+232 047.061.2 gpio 2
+233 047.061.3 gpio 3
+234 048.000.0 gpio 0 serdes
+235 048.000.1 gpio 1 serdes
+236 048.000.2 gpio 2 serdes
+237 048.000.3 gpio 3 serdes
+238 049.061.0 gpio 0
+239 049.061.1 gpio 1
+240 049.061.2 gpio 2
+241 049.061.3 gpio 3
+242 050.000.0 gpio 0 serdes
+243 050.000.1 gpio 1 serdes
+244 050.000.2 gpio 2 serdes
+245 050.000.3 gpio 3 serdes
+246 051.000.0 gpio 0 serdes
+247 051.000.1 gpio 1 serdes
+248 051.000.2 gpio 2 serdes
+249 051.000.3 gpio 3 serdes
+250 051.061.0 gpio 0
+251 051.061.1 gpio 1
+252 051.061.2 gpio 2
+253 051.061.3 gpio 3
+254 052.061.0 gpio 0
+255 052.061.1 gpio 1
+256 052.061.2 gpio 2
+257 052.061.3 gpio 3
+258 053.000.0 gpio 0 serdes
+259 053.000.1 gpio 1 serdes
+260 053.000.2 gpio 2 serdes
+261 053.000.3 gpio 3 serdes
+262 055.000.0 gpio 0 serdes
+263 055.000.1 gpio 1 serdes
+264 055.000.2 gpio 2 serdes
+265 055.000.3 gpio 3 serdes
+266 055.061.0 gpio 0
+267 055.061.1 gpio 1
+268 055.061.2 gpio 2
+269 055.061.3 gpio 3
+270 057.000.0 gpio 0 serdes
+271 057.000.1 gpio 1 serdes
+272 057.000.2 gpio 2 serdes
+273 057.000.3 gpio 3 serdes
+274 057.061.0 gpio 0
+275 057.061.1 gpio 1
+276 057.061.2 gpio 2
+277 057.061.3 gpio 3
+278 058.061.0 gpio 0
+279 058.061.1 gpio 1
+280 058.061.2 gpio 2
+281 058.061.3 gpio 3
+282 059.000.0 gpio 0 serdes
+283 059.000.1 gpio 1 serdes
+284 059.000.2 gpio 2 serdes
+285 059.000.3 gpio 3 serdes
+286 060.061.0 gpio 0
+287 060.061.1 gpio 1
+288 060.061.2 gpio 2
+289 060.061.3 gpio 3
+290 061.000.0 gpio 0 serdes
+291 061.000.1 gpio 1 serdes
+292 061.000.2 gpio 2 serdes
+293 061.000.3 gpio 3 serdes
+294 062.000.0 gpio 0 serdes
+295 062.000.1 gpio 1 serdes
+296 062.000.2 gpio 2 serdes
+297 062.000.3 gpio 3 serdes
+298 064.000.0 gpio 0 serdes
+299 064.000.1 gpio 1 serdes
+300 064.000.2 gpio 2 serdes
+301 064.000.3 gpio 3 serdes
+302 065.000.0 gpio 0 serdes
+303 065.000.1 gpio 1 serdes
+304 065.000.2 gpio 2 serdes
+305 065.000.3 gpio 3 serdes
+306 066.000.0 gpio 0 serdes
+307 066.000.1 gpio 1 serdes
+308 066.000.2 gpio 2 serdes
+309 066.000.3 gpio 3 serdes
+310 068.010.0 gpio 0 serdes
+311 068.010.1 gpio 1 serdes
+312 068.010.2 gpio 2 serdes
+313 068.010.3 gpio 3 serdes
+314 068.011.0 gpio 0 serdes
+315 068.011.1 gpio 1 serdes
+316 068.011.2 gpio 2 serdes
+317 068.011.3 gpio 3 serdes
+318 068.012.0 gpio 0 serdes
+319 068.012.1 gpio 1 serdes
+320 068.012.2 gpio 2 serdes
+321 068.012.3 gpio 3 serdes
+322 068.013.0 gpio 0 serdes
+323 068.013.1 gpio 1 serdes
+324 068.013.2 gpio 2 serdes
+325 068.013.3 gpio 3 serdes
+326 068.014.0 gpio 0
+327 068.014.1 gpio 1
+328 068.014.2 gpio 2
+329 068.014.3 gpio 3
+330 068.015.0 gpio 0
+331 068.015.1 gpio 1
+332 068.015.2 gpio 2
+333 068.015.3 gpio 3
+334 068.016.0 gpio 0
+335 068.016.1 gpio 1
+336 068.016.2 gpio 2
+337 068.016.3 gpio 3
+338 068.017.0 gpio 0
+339 068.017.1 gpio 1
+340 068.017.2 gpio 2
+341 068.017.3 gpio 3
+342 068.022.0 gpio 0
+343 068.022.1 gpio 1
+344 068.022.2 gpio 2
+345 068.022.3 gpio 3
+346 068.023.0 gpio 0
+347 068.023.1 gpio 1
+348 068.023.2 gpio 2
+349 068.023.3 gpio 3
+350 068.024.0 gpio 0
+351 068.024.1 gpio 1
+352 068.024.2 gpio 2
+353 068.024.3 gpio 3
+354 068.025.0 gpio 0
+355 068.025.1 gpio 1
+356 068.025.2 gpio 2
+357 068.025.3 gpio 3
+358 068.029.0 gpio 0
+359 068.029.1 gpio 1
+360 068.029.2 gpio 2
+361 068.029.3 gpio 3
+362 068.030.0 gpio 0
+363 068.030.1 gpio 1
+364 068.030.2 gpio 2
+365 068.030.3 gpio 3
+366 068.031.0 gpio 0
+367 068.031.1 gpio 1
+368 068.031.2 gpio 2
+369 068.031.3 gpio 3
+370 068.032.0 gpio 0
+371 068.032.1 gpio 1
+372 068.032.2 gpio 2
+373 068.032.3 gpio 3
+374 068.036.0 gpio 0
+375 068.036.1 gpio 1
+376 068.036.2 gpio 2
+377 068.036.3 gpio 3
+378 068.037.0 gpio 0
+379 068.037.1 gpio 1
+380 068.037.2 gpio 2
+381 068.037.3 gpio 3
+382 068.038.0 gpio 0
+383 068.038.1 gpio 1
+384 068.038.2 gpio 2
+385 068.038.3 gpio 3
+386 068.039.0 gpio 0
+387 068.039.1 gpio 1
+388 068.039.2 gpio 2
+389 068.039.3 gpio 3
+390 068.043.0 gpio 0
+391 068.043.1 gpio 1
+392 068.043.2 gpio 2
+393 068.043.3 gpio 3
+394 068.044.0 gpio 0
+395 068.044.1 gpio 1
+396 068.044.2 gpio 2
+397 068.044.3 gpio 3
+398 068.045.0 gpio 0
+399 068.045.1 gpio 1
+400 068.045.2 gpio 2
+401 068.045.3 gpio 3
+402 068.046.0 gpio 0
+403 068.046.1 gpio 1
+404 068.046.2 gpio 2
+405 068.046.3 gpio 3
+406 068.051.0 gpio 0
+407 068.051.1 gpio 1
+408 068.051.2 gpio 2
+409 068.051.3 gpio 3
+410 068.052.0 gpio 0
+411 068.052.1 gpio 1
+412 068.052.2 gpio 2
+413 068.052.3 gpio 3
+414 068.053.0 gpio 0
+415 068.053.1 gpio 1
+416 068.053.2 gpio 2
+417 068.053.3 gpio 3
+418 068.054.0 gpio 0
+419 068.054.1 gpio 1
+420 068.054.2 gpio 2
+421 068.054.3 gpio 3
+422 068.057.0 gpio 0
+423 068.057.1 gpio 1
+424 068.057.2 gpio 2
+425 068.057.3 gpio 3
+426 068.058.0 gpio 0
+427 068.058.1 gpio 1
+428 068.058.2 gpio 2
+429 068.058.3 gpio 3
+430 068.059.0 gpio 0
+431 068.059.1 gpio 1
+432 068.059.2 gpio 2
+433 068.059.3 gpio 3
+434 068.060.0 gpio 0
+435 068.060.1 gpio 1
+436 068.060.2 gpio 2
+437 068.060.3 gpio 3
