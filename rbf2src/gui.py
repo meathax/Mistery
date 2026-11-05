@@ -13,7 +13,7 @@ import convert  # noqa: E402
 from hacker_art import HackerArt  # noqa: E402
 
 TITLE = "Mistery"
-VERSION = "v1.0"
+VERSION = "v1.1"
 
 # scene palette
 BG, PANEL, EDGE = "#030603", "#07100a", "#1d4d1d"

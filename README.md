@@ -16,7 +16,7 @@
   <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20x64-39ff14?style=flat-square&labelColor=030603">
   <img alt="target" src="https://img.shields.io/badge/target-MiSTer%20DE10--Nano-00dcff?style=flat-square&labelColor=030603">
   <img alt="fpga" src="https://img.shields.io/badge/FPGA-Cyclone%20V%205CSEBA6U23I7-ff00aa?style=flat-square&labelColor=030603">
-  <img alt="release" src="https://img.shields.io/badge/release-v1.0-39ff14?style=flat-square&labelColor=030603">
+  <img alt="release" src="https://img.shields.io/badge/release-v1.1-39ff14?style=flat-square&labelColor=030603">
 </p>
 
 **Mistery takes a MiSTer FPGA core (`.rbf`) and turns it back into source code.** Load the bitstream, pick
@@ -45,7 +45,7 @@ that writes the bitstream back.
 
 ## `> download`
 
-Grab **Mistery v1.0** from the [Releases](../../releases) page, unzip anywhere.
+Grab **Mistery v1.1** from the [Releases](../../releases) page, unzip anywhere.
 
 1. Run `Mistery.exe`. That's it.
 
